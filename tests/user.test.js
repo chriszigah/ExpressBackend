@@ -1,11 +1,22 @@
 let request = require('supertest')
-let app = require('../app')
+let testApp = require('../app')
+
+
+const PORT = process.env.PORT;
+
+console.log(PORT)
+
+testApp.listen(
+  PORT,
+  console.log(`Server testing in ${process.env.NODE_ENV} mode on port ${PORT}`)
+);
+
 
 // Create a User
 /*
 describe('POST /user/register', function () {
   test('should create a new user', async () => {
-    const response = await request(app).post('/user/register').send({
+    const response = await request(testApp).post('/user/register').send({
       name: 'testName',
       lastname: 'testLastname',
       email: 'testEmail@gmail.com',
@@ -19,7 +30,7 @@ describe('POST /user/register', function () {
 // Login a User
 describe('POST /user/login', function () {
   test('should Login a user', async () => {
-    const response = await request(app).post('/user/login').send({
+    const response = await request(testApp).post('/user/login').send({
       email: 'testEmail@gmail.com',
       password: 'testPassword1'
     })
@@ -31,7 +42,7 @@ describe('POST /user/login', function () {
 // Update a User
 describe('PUT /user/upd/:id', function () {
   test('should update a user record(s)', async (done) => {
-    request(app)
+    request(testApp)
       .post('/user/login')
       .send({
         email: 'testEmail@gmail.com',
@@ -47,7 +58,7 @@ describe('PUT /user/upd/:id', function () {
 // Logout a User
 describe('GET /logout', function () {
   test('should Logout a user', async () => {
-    const response = await request(app).get('/user/logout')
+    const response = await request(testApp).get('/user/logout')
     expect(response.statusCode).toBe(422)
   })
 })

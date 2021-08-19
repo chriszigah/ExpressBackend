@@ -141,14 +141,4 @@ app.use(function (err, req, res, next) {
   return res.status(err.status || 500).json({ Error: err });
 });
 
-/*
-const PORT = process.env.PORT;
-
-console.log(PORT)
-
-app.listen(
-  PORT,
-  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
-);
-*/
 module.exports = app;
